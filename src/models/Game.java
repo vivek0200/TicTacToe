@@ -2,6 +2,7 @@ package models;
 
 import strategies.WinningStrategy;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Game {
@@ -17,7 +18,7 @@ public class Game {
         board = new Board(size);
         this.players = players;
         this.nextPlayer = 0;
-        this.moves = null;
+        this.moves = new ArrayList<>();
         this.winner = null;
         this.gameState = GameState.IN_PROGRESS;
         this.winningStrategies=winningStrategies;
@@ -89,8 +90,8 @@ public class Game {
         if(row<0 || row>=board.getSize() || col<0 || col>=board.getSize()){
             return false;
         }
-
-        return board.getGrid().get(row).get(col).equals(CellState.Empty);
+        //System.out.println(board.getGrid().get(row).get(col).getCellState());
+        return board.getGrid().get(row).get(col).getCellState().equals(CellState.Empty);
     }
 
     private void updateGameState(Move move,Player player){
@@ -125,9 +126,9 @@ public class Game {
 
         Move move=player.makeMove(board);
         if(!validate(move)){
-            System.out.println("Invalid move");
+            System.out.println("Invalid move return");
+            return;
         }
-
         updateGameState(move,player);
 
         if(checkWinner(move)){

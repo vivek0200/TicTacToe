@@ -7,7 +7,7 @@ public class HumanPlayer extends Player{
     private int coins;
     private Scanner sc;
 
-    public HumanPlayer(int id,String name,PlayerType type,Symbol symbol) {
+    public HumanPlayer(int id,String name,Symbol symbol) {
         super(id,name,symbol,PlayerType.human);
         sc = new Scanner(System.in);
         this.coins = 100;

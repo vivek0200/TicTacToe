@@ -1,9 +1,13 @@
 package models;
 
+import strategies.BotPlayingStartegyFactory;
+
+import java.util.List;
+
 public class Bot extends Player {
     private BotLevel level;
 
-    public Bot(BotLevel level,int id,String name,PlayerType playerType,Symbol symbol) {
+    public Bot(int id,String name,Symbol symbol,BotLevel level) {
         super(id,name,symbol,PlayerType.bot);
         this.level = level;
     }
@@ -16,6 +20,6 @@ public class Bot extends Player {
 
     @Override
     public Move makeMove(Board board) {
-        return null;
+       return BotPlayingStartegyFactory.getBotPlayingStartegy(level).makeMove(board);
     }
 }
